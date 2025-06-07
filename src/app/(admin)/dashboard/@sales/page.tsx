@@ -9,11 +9,7 @@ import MagicButton from '@/app/components/magic-button';
 export interface PageProps {}
 
 export default async function Page({}: PageProps) {
-  const data = await new Promise((res) => {
-    setTimeout(() => {
-      res(getSummarySales());
-    }, 4000);
-  });
+  const data = await getSummarySales();
 
   return (
     <DashboardCard
