@@ -1,14 +1,13 @@
 import React from 'react';
 import Header from '@/app/components/header';
 interface PageProps {
-  params: Promise<{ id: string[] }>;
+  params: { id: string[] };
 }
 
 export default async function Page({ params }: PageProps) {
-  const resolvedParams = await params;
   return (
     <>
-      <Header>Companies ({resolvedParams.id})</Header>
+      <Header>Companies ({params.id})</Header>
     </>
   );
 }
