@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '@/app/components/header';
 interface PageProps {
-  params: { id: string[] };
+  params: any;
 }
 
 export default async function Page({ params }: PageProps) {
