@@ -8,15 +8,16 @@ export interface PageProps {
 }
 
 export default async function Page({ params }: PageProps) {
+  const { id } = await Promise.resolve(params);
   const queryClient = getQueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['companies', params.id],
-    queryFn: () => getCompany(params.id, { cache: 'no-store' }),
+    queryKey: ['companies', id],
+    queryFn: () => getCompany(id, { cache: 'no-store' }),
     staleTime: 10 * 1000,
   });
 
-  const company = queryClient.getQueryData(['companies', params.id]) as Company;
+  const company = queryClient.getQueryData(['companies', id]) as Company;
 
   return <Header>{company?.title}</Header>;
 }

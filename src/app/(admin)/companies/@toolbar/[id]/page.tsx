@@ -7,9 +7,10 @@ export interface PageProps {
   params: { id: string };
 }
 
-export default function Page({ params }: PageProps) {
+export default async function Page({ params }: PageProps) {
+  const { id } = await Promise.resolve(params);
   return (
-    <Toolbar action={<AddPromotionButton companyId={params.id} />}>
+    <Toolbar action={<AddPromotionButton companyId={id} />}>
       <SearchInput />
     </Toolbar>
   );
