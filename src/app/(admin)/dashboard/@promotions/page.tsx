@@ -9,6 +9,12 @@ export interface PageProps {}
 
 export default async function Page({}: PageProps) {
   const data = await getPromotions();
+  const seenIds = new Set();
+  const uniqueIds = data.filter((d) => {
+    if (seenIds.has(d.id)) return false;
+    seenIds.add(d.id);
+    return true;
+  });
 
   return (
     <DashboardCard label="Promotions">
@@ -21,7 +27,7 @@ export default async function Page({}: PageProps) {
           </>
         }
       >
-        {data.map(({ id, title, companyTitle, discount }) => (
+        {uniqueIds.map(({ id, title, companyTitle, discount }) => (
           <tr key={id}>
             <SummaryTableCell>{companyTitle}</SummaryTableCell>
             <SummaryTableCell>{title}</SummaryTableCell>

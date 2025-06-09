@@ -7,11 +7,11 @@ import CompanyInfo from '@/app/components/company-info';
 import CompanyPromotions from '@/app/components/company-promotions';
 
 export interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function Page({ params }: PageProps) {
-  const { id } = await Promise.resolve(params);
+  const { id } = await params;
 
   const queryClient = getQueryClient();
 

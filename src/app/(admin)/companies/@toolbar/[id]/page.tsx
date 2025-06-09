@@ -4,11 +4,11 @@ import SearchInput from '@/app/components/search-input';
 import AddPromotionButton from '@/app/components/add-promotion-button';
 
 export interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function Page({ params }: PageProps) {
-  const { id } = await Promise.resolve(params);
+  const { id } = await params;
   return (
     <Toolbar action={<AddPromotionButton companyId={id} />}>
       <SearchInput />
